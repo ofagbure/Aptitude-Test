@@ -1,68 +1,73 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Aptitude Test
 
-## Available Scripts
+You can visit the deployed site here
 
-In the project directory, you can run:
 
-### `npm start`
+## Table of Contents 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* [Overview of Product](#OverviewofProduct)
+* [Why is it Important](#WhyisitImportant)
+* [User Story](#UserStory)
+* [Technologies Used](#TechnologiesUsed) 
+* [Directions for Future Development](#DirectionsforFutureDevelopment)
+* [License](#License)
+* [Badges](#Badges)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Overview of Product
+We will be building an Applicant Tracking System (ATS). This application allows users to log in and create a profile for themselves. They will also be able to take a quick aptitude test to determine what job/ business would be a good fit for them from the list available. They can then submit an application to that role. Applicants will be able to see all the roles available to them, as well as their own applications and any interviews they have been invited to take. 
 
-### `npm test`
+There will also be a back-end recruiter view of the website that shows recruiters the different applicants, what their test scores were, and any jobs they’ve applied to. Recruiters will have the ability to progress, reject and hire applicants, as well as move their application to a different role. 
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Why is this important
+As a recent graduate, or someone who would like to apply to a role in a complex organization, it may sometimes be hard to figure out what role you would be a good fit for. Our aptitude test cuts out the need to open all jobs and read through a job description to find a role that fits. It also reduced the risk of the company losing out on qualified/ good, diverse candidates who may have applied to the wrong role by guiding them in the right direction.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## User Story
+AS an employer
+I want to ensure that people are applying to the appropriate role
+So that I get the most qualified applicants
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+AS a young college student in the job market
+I want to ensure that I am applying to the correct role
+So that I have a better chance of being selected/ getting an offer
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Technologies Used
+This application is built with standard HTML5, and CSS.
+It also makes use of the below technologies
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Directions for Future Development
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## License
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+MIT License
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Copyright (c) [2020] [Femi Fagbure]
 
-### Code Splitting
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-### Analyzing the Bundle Size
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-### Making a Progressive Web App
+## Badges
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+![GitHub last commit](https://img.shields.io/github/last-commit/ofagbure/Aptitude-Test)
 
-### Advanced Configuration
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
