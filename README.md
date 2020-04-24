@@ -70,8 +70,3 @@ SOFTWARE.
 ![GitHub last commit](https://img.shields.io/github/last-commit/ofagbure/Aptitude-Test)
 
 
-<!-- TO DO -->
-<!-- - Add link to deployed site
-- Add Pictures of app
-- Add technologies used
-- Add directions for future development -->
