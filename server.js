@@ -22,6 +22,11 @@ app.get("/api/allApplicants", (req, res) => {
         res.send(dataVomitter(result));
     });
 });
+app.get("/api/allRecruiters", (req, res) => {
+    users.allRecruiters( function (result) {
+        res.send(dataVomitter(result));
+    });
+});
 
 app.listen(PORT, () => {
     console.log("Server listening on: http://localhost:" + PORT);

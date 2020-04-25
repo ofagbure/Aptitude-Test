@@ -5,7 +5,7 @@ let orm = {
         let queryString = "SELECT * FROM user;";
         connection.query(queryString, (err, result) => {
             if (err) { throw err; }
-            console.log(`Select all was called. Retrieved: ${JSON.stringify(result)}`)
+            console.log(`allUsers was called. Retrieved: ${JSON.stringify(result)}`)
             cb(result);
         });
     },
@@ -13,10 +13,18 @@ let orm = {
         let queryString = "SELECT * FROM user WHERE recruiter = false;";
         connection.query(queryString, (err, result) => {
             if (err) { throw err; }
-            console.log(`Select all was called. Retrieved: ${JSON.stringify(result)}`)
+            console.log(`allApplicants was called. Retrieved: ${JSON.stringify(result)}`)
             cb(result);
         });
     },
+    allRecruiters: (cb) => {
+        let queryString = "SELECT * FROM user WHERE recruiter = true;";
+        connection.query(queryString, (err, result) => {
+            if (err) { throw err; }
+            console.log(`allRecruiters was called. Retrieved: ${JSON.stringify(result)}`)
+            cb(result);
+        });
+    }
 }
 
 
