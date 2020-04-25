@@ -14,20 +14,30 @@ app.use(express.json());
 // Right now it's good for testing
 app.get("/api/allusers", (req, res) => {
     users.allUsers( function (result) {
-        let users = [];
-        for(var i = 0; i < result.length; i++) {
-            users += 
-                `<p>user_id: ${result[i].user_id}</p>
-                <p>email: ${result[i].email}</p>
-                <p>usr_pass: ${result[i].usr_pass}</p>
-                <p>recruiter? ${result[i].recruiter}</p>
-                --------------------------------------------
-                `;
-        }
-        res.send(users);
+        res.send(dataVomitter(result));
+    });
+});
+app.get("/api/allApplicants", (req, res) => {
+    users.allApplicants( function (result) {
+        res.send(dataVomitter(result));
     });
 });
 
 app.listen(PORT, () => {
     console.log("Server listening on: http://localhost:" + PORT);
 });
+
+
+//This is just a function to iterate through recieved DB info
+function dataVomitter(item) {
+    var result = '';
+    for(var i = 0; i < item.length; i++) {
+        for (var key in item[i]) {
+            if (item[i].hasOwnProperty(key)) {
+                result += `<p>${key}: ${item[i][key]}</p>`;
+            }
+        }
+        result += "<p>-------------</p>";
+    }
+    return result;
+}
