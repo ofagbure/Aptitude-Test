@@ -5,37 +5,40 @@ USE `aptitude_db`;
 
 
 CREATE TABLE user (
-id int NOT NULL AUTO_INCREMENT,
+user_id int NOT NULL AUTO_INCREMENT,
 email varchar( 50 ) NOT NULL UNIQUE,
 usrpass varchar( 32 ) NOT NULL,
-employer boolean NOT NULL,
-PRIMARY KEY ( id )
+recruiter boolean NOT NULL,
+PRIMARY KEY ( user_id )
 );
 
 CREATE TABLE userprofile (
-profileid int NOT NULL AUTO_INCREMENT,
-profileimg varchar ( 64 ),
-firstname varchar ( 64 ) NOT NULL,
-lastname varchar ( 64 ) NOT NULL,
-githublnk varchar ( 64 ),
+profile_id int NOT NULL AUTO_INCREMENT,
+profile_img varchar ( 64 ),
+first_name varchar ( 64 ) NOT NULL,
+last_name varchar ( 64 ) NOT NULL,
 tagline varchar ( 64 ),
 website varchar ( 64 ),
 descrip varchar( 512 ),
 city varchar ( 64 ) NOT NULL,
 willmove boolean NOT NULL,
 testresults varchar ( 64 ),
-id int NOT NULL,
-PRIMARY KEY ( profileid )
+user_id int NOT NULL,
+PRIMARY KEY ( profile_id )
 );
 
-CREATE TABLE employerprofile (
-companyid int NOT NULL AUTO_INCREMENT,
-companyname varchar( 64 ) NOT NULL UNIQUE,
-companyimg varchar ( 64 ),
-tagline varchar( 64 ),
+CREATE TABLE recruiterprofile (
+recruiter_id int NOT NULL AUTO_INCREMENT,
 website varchar ( 64 ),
 descrip varchar( 512 ),
-resultinterest varchar ( 64 ),
-id int NOT NULL,
-PRIMARY KEY ( companyid )
+user_id  int NOT NULL,
+PRIMARY KEY ( recruiter_id )
+);
+
+CREATE TABLE interviews (
+interview_id int NOT NULL AUTO_INCREMENT,
+user_id INT NOT NULL,
+interview_time DATETIME NOT NULL,
+interview_location varchar ( 64 ) NOT NULL,
+PRIMARY KEY ( interview_id )
 );
