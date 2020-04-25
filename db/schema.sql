@@ -13,7 +13,7 @@ PRIMARY KEY ( id )
 )
 
 CREATE TABLE userprofile (
-profileid int ( 8 ) NOT NULL,
+profileid int ( 8 ) NOT NULL AUTO_INCREMENT,
 profileimg varchar ( 64 ),
 firstname varchar ( 64 ) NOT NULL,
 lastname varchar ( 64 ) NOT NULL,
@@ -29,7 +29,7 @@ PRIMARY KEY ( profileid )
 )
 
 CREATE TABLE employerprofile (
-companyid int ( 8 ) NOT NULL,
+companyid int ( 8 ) NOT NULL AUTO_INCREMENT,
 companyname varchar( 64 ) NOT NULL UNIQUE,
 companyimg varchar ( 64 ),
 tagline varchar( 64 ),
