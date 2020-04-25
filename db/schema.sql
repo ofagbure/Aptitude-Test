@@ -7,7 +7,7 @@ USE `aptitude_db`;
 CREATE TABLE user (
 user_id int NOT NULL AUTO_INCREMENT,
 email varchar( 50 ) NOT NULL UNIQUE,
-usrpass varchar( 32 ) NOT NULL,
+usr_pass varchar( 32 ) NOT NULL,
 recruiter boolean NOT NULL,
 PRIMARY KEY ( user_id )
 );
@@ -24,15 +24,17 @@ city varchar ( 64 ) NOT NULL,
 willmove boolean NOT NULL,
 testresults varchar ( 64 ),
 user_id int NOT NULL,
-PRIMARY KEY ( profile_id )
+PRIMARY KEY ( profile_id ),
+FOREIGN KEY ( user_id ) REFERENCES User ( user_id )
 );
 
 CREATE TABLE recruiterprofile (
 recruiter_id int NOT NULL AUTO_INCREMENT,
-website varchar ( 64 ),
-descrip varchar( 512 ),
+first_name varchar ( 64 ) NOT NULL,
+last_name varchar ( 64 ) NOT NULL,
 user_id  int NOT NULL,
-PRIMARY KEY ( recruiter_id )
+PRIMARY KEY ( recruiter_id ),
+FOREIGN KEY ( user_id ) REFERENCES User ( user_id )
 );
 
 CREATE TABLE interviews (
@@ -40,5 +42,6 @@ interview_id int NOT NULL AUTO_INCREMENT,
 user_id INT NOT NULL,
 interview_time DATETIME NOT NULL,
 interview_location varchar ( 64 ) NOT NULL,
-PRIMARY KEY ( interview_id )
+PRIMARY KEY ( interview_id ),
+FOREIGN KEY ( user_id ) REFERENCES User ( user_id )
 );
