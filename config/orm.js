@@ -21,7 +21,7 @@ let orm = {
         let queryString = "SELECT * FROM user WHERE recruiter = true;";
         connection.query(queryString, (err, result) => {
             if (err) { throw err; }
-            // console.log(`allRecruiters was called. Retrieved: ${JSON.stringify(result)}`);
+            console.log(`allRecruiters was called. Retrieved: ${JSON.stringify(result)}`);
             console.log(cb.toString());
             cb(result);
         });
@@ -38,8 +38,14 @@ let orm = {
         connection.query(queryString, [email, password], (err, results) => {
             if (err) { throw err; }
             console.log('log in');
-            // console.log(results);
             cb(results);
+        });
+    },
+    selectAUser: (email, cb) => {
+        let queryString = "SELECT * FROM user WHERE email = ?";
+        connection.query(queryString, [email], (err, result) => {
+            if (err) { throw err; }
+            console.log(`selectAUser was called. Retrieved: ${JSON.stringify(result)}`)
         });
     }
 }

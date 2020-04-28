@@ -71,7 +71,7 @@ app.get("/auth", (req, res) => {
 
 app.get('/home', function(req, res) {
     if (req.session.loggedin) {
-		res.send('Welcome back, ' + req.session.email + '!');
+        res.send('Welcome back, ' + req.session.email + '!');
 	} else {
 		res.redirect('/login');
 	}
