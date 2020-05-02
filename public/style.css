@@ -1,0 +1,93 @@
+#mainDisplay {
+    transition: all 200ms;
+}
+
+.profilePic {
+    width: 200px;
+    border-radius: 100px;
+    margin-left: 40px;
+    border: groove rgb(73, 73, 73) 5px;
+}
+
+#top {
+    transition: all 500ms;
+    opacity: 0;
+}
+
+#signInError, #createAccError {
+    display: none;
+    color: red;
+}
+
+#yesNoOptions {
+    position: relative;
+    bottom: 20px;
+    left: 30px;
+}
+
+#emailDsp {
+    display: none;
+    text-align: center;
+}
+
+#welcome {
+    position: relative;
+    animation: load 1s; 
+}
+
+.purpleBtn {
+    margin: 0 auto;
+    margin-top: 50px;
+    background: rgb(69,46,111);
+    background: linear-gradient(45deg, rgba(69,46,111,1) 0%, rgba(159,87,181,1) 66%, rgba(0,172,255,1) 100%);
+    color: white;
+    font-size: calc(1em + 1vw);
+    padding: 30px 20px;
+    border-radius: 20px;
+    border: 5px groove black;
+    transition: all 200ms;
+    user-select: none;
+    outline: none;
+}
+
+.purpleBtn:hover {
+    filter: brightness(110%);
+    transform: scale(1.02);
+    border: 5px groove gray;
+    cursor: pointer;
+}
+
+#portfolioBackground {
+    background-image: url('./images/herringbone.png');
+    /* background-color: rgb(204, 204, 204); */
+    padding: 25px;
+    border-radius: 100px 15px 15px 15px ;
+}
+
+
+@keyframes load {
+    from {
+        top:200px;
+    }
+    to {
+        top: 0px;
+    }
+  }
+
+  @keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+  }
+
+  @keyframes fadeout {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+  }
