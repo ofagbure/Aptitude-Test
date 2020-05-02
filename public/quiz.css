@@ -61,3 +61,7 @@ h1 {
   left: 50%;
   transform: translateX(-50%);
 }
+
+h4{
+    width: 100%;
+}
