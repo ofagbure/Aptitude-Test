@@ -54,6 +54,7 @@ h1 {
   font-family: roc-grotesk, sans-serif;
   font-weight: 500;
   font-style: normal;
+  text-transform: uppercase;
   color: #ffffff;
   position: absolute;
   top: 40%;
@@ -81,10 +82,12 @@ button {
     margin: 0;
     top: 60%;
     left: 50%;
-    padding: 8px 10px;
+    padding: 15px 32px;
+    font-size: 30px;
     border-radius: 25px;
     color: #ffffff;
     font-family: source-sans-pro,sans-serif;
     font-weight: 400;
-    font-style: normal;
+    font-style: Wide;
+    transform: translateX(-50%)
 }
