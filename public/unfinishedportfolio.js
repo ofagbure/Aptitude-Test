@@ -115,7 +115,7 @@ function editProfile() {
                 </div>
                 <div class="col-md-6">
                     <p>Enter a link to an image for your profile picture</p>
-                    <input type="text" class="form-control" id="profilePic">
+                    <input type="text" class="form-control" id="profilePic" maxlength="499">
                     <label for="userDescription">Describe yourself!</label>
                     <textarea class="form-control" id="userDescription" rows="3" maxlength="499">${tmpPortfolio.userDescription}</textarea>
                 </div>
@@ -125,7 +125,7 @@ function editProfile() {
                 <div class="col-md-2"></div>
                 <div class="animate form-group col-md-8">
                     <p style="text-align: center;">Enter a link to your personal website or portfolio</p>
-                    <input type="text" class="form-control" id="website" value="${tmpPortfolio.website}">
+                    <input type="text" class="form-control" id="website" value="${tmpPortfolio.website}" maxlength="60">
                 </div>
             </div>
         </form>
