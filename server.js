@@ -108,7 +108,7 @@ app.get('/jobs', function(req, res) {
 });
 
 app.get('/quiz', function(req, res) {
-    res.sendFile('public/quiz.html', {root: __dirname });
+    res.sendFile('public/quizindex.html', {root: __dirname });
 });
 
 app.get('/candidateportal', function(req, res) {
