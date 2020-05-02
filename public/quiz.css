@@ -79,4 +79,6 @@ h4{
 .btn {
     background-color: #F6BF42;
     color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 2px;
 }
