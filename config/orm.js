@@ -27,7 +27,7 @@ let orm = {
         });
     },
     addUser: (email, password, isRecruiter) => {
-        let queryString = "INSERT INTO user ( email, usr_pass, recruiter ) VALUES (?, ?, ?);";
+        let queryString = "INSERT INTO user ( email, usr_pass, recruiter ) VALUES (?, ?, ?)";
         connection.query(queryString, [email, password, isRecruiter], (err, result) => {
             if (err) { throw err; }
             console.log(`Insert one was called.`)
@@ -46,8 +46,33 @@ let orm = {
         connection.query(queryString, [email], (err, result) => {
             if (err) { throw err; }
             console.log(`selectAUser was called. Retrieved: ${JSON.stringify(result)}`)
+            cb(result);
         });
-    }
+    },
+    addPortfolio: (firstName, lastName, city, willMove, profilePic, userDescription, website, userID) => {
+        let queryString = "INSERT INTO userprofile ( profile_img, first_name, last_name, website, descrip, city, willmove, user_id ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        connection.query(queryString, [profilePic, firstName, lastName, website, userDescription, city, willMove, userID], (err, result) => {
+            if (err) { throw err; }
+            console.log(`portfolio was updated`);
+            console.log(result);
+        });
+    },
+    selectPortfolio: (userID, cb) => {
+        let queryString = "SELECT * FROM userprofile WHERE user_id = ?";
+        connection.query(queryString, [userID], (err, result) => {
+            if (err) { throw err; }
+            console.log(`selectPortfolio was called. Retrieved: ${JSON.stringify(result)}`);
+            cb(result);
+        });
+    },
+    updatePortfolio: (firstName, lastName, city, willMove, profilePic, userDescription, website, userID) => {
+        let queryString = "UPDATE userprofile SET profile_img = ?, first_name = ?, last_name = ?, website = ?, descrip = ?, city = ?, willmove = ? WHERE user_id = ?";
+        connection.query(queryString, [profilePic, firstName, lastName, website, userDescription, city, willMove, userID], (err, result) => {
+            if (err) { throw err; }
+            console.log('Profile Updated!');
+            console.log(result);
+        });
+    },
 }
 
 

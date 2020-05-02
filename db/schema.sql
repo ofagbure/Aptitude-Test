@@ -14,7 +14,7 @@ PRIMARY KEY ( user_id )
 
 CREATE TABLE userprofile (
 profile_id int NOT NULL AUTO_INCREMENT,
-profile_img varchar ( 64 ),
+profile_img varchar ( 512 ),
 first_name varchar ( 64 ) NOT NULL,
 last_name varchar ( 64 ) NOT NULL,
 tagline varchar ( 64 ),
