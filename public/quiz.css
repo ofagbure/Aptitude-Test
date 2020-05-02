@@ -73,5 +73,9 @@ h4{
     font-style: normal;
     color: #ffffff;
     position: absolute;
-    top: 45%;
+    top: 52%;
+}
+
+.btn {
+    background-color: #F6BF42;
 }
