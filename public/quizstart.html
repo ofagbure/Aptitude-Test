@@ -2,31 +2,255 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="quiz.css">
-    <!-- <link rel="stylesheet" href="https://use.typekit.net/yry7dtu.css">
-  <link rel="stylesheet" href="https://use.typekit.net/yry7dtu.css"> -->
-    <link rel="stylesheet" href="https://use.typekit.net/yry7dtu.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
 
-    <title>Document</title>
+
+  <title>Document</title>
 </head>
 
 <body>
-    <!-- ... existing HTML ... -->
-    <div id="like_button_container"></div>
-    <!-- ... existing HTML ... -->
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
-    <div id="root">
-        <h1> error </h1>
-    </div>
+  <!-- Load our React component. -->
+  <script type="text/babel">
 
-    <!-- <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script> -->
+    // import { useState } from 'react';
+    //---------------------- After Page Component ----------------------------------//
+    class Complete extends React.Component {
+      render(props) {
+        return (
+          <div>
+            <h1> You have finshed with the test!</h1>
+            <h3> Score {this.props.score} </h3>
+          </div>
+        )
+      }
+    }
+
+    //---------------------- Answer Buttons Component ----------------------------------//
+    class Answer extends React.Component {
+      render(props) {
+        return (
+          <button value={this.props.numbers} className="btn btn-light btn-block" onClick={this.props.handleClick}>
+            <span className="number"> {this.props.answer} </span>
+          </button>
+        )
+      }
+    }
+
+    //---------------------- Answer Component ----------------------------------//
+
+    class AnswerComp extends React.Component {
+      render(props) {
+        return (
+          <div>
+            <Answer
+              increment={1}
+              answer={this.props.question.choice1}
+              handleClick={this.props.handleClick}
+              selected={this.props.selectAnswer === '1'}
+            />
+            <Answer
+              increment={2}
+              answer={this.props.question.choice2}
+              handleClick={this.props.handleClick}
+              selected={this.props.selectAnswer === '2'}
+            />
+            <Answer
+              increment={3}
+              answer={this.props.question.choice3}
+              handleClick={this.props.handleClick}
+              selected={this.props.selectAnswer === '3'}
+            />
+            <Answer
+              increment={4}
+              answer={this.props.question.choice4}
+              handleClick={this.props.handleClick}
+              selected={this.props.selectAnswer === '4'}
+            />
+            <Answer
+              increment={5}
+              answer={this.props.question.choice5}
+              handleClick={this.props.handleClick}
+              selected={this.props.selectAnswer === '5'}
+            />
+          </div>
+        )
+      }
+    }
+
+    //---------------------- Question of num of num Component ----------------------------------//
+
+    class Progress extends React.Component {
+      render(props) {
+        return (
+          <h2>
+            Question {this.props.total} of {this.props.current}
+          </h2>
+        )
+      }
+    }
+
+    //---------------------- Question and Answer choices Data ----------------------------------//
+    const QA = [
+      {
+        id: 1,
+        question: "What was your favorite subject in school?",
+        choice1: 'English',
+        choice2: 'Math',
+        choice3: 'Humanities',
+        choice4: 'Economics',
+        choice5: 'Computer Studies'
+      },
+      {
+        id: 2,
+        question: "What do you work best with?",
+        choice1: 'People',
+        choice2: 'Numbers',
+        choice3: 'Details',
+        choice4: 'Data',
+        choice5: 'Technology'
+      },
+      {
+        id: 3,
+        question: "How would you rate your communications skills?",
+        choice1: 'Very good',
+        choice2: 'Good',
+        choice3: 'Neutral',
+        choice4: 'Bad',
+        choice5: 'Very Bad'
+      },
+      {
+        id: 4,
+        question: "What are you best at?",
+        choice1: 'Seeing the bigger picture',
+        choice2: 'Project management',
+        choice3: 'Advising',
+        choice4: 'Influencing',
+        choice5: 'Coding'
+      },
+      {
+        id: 5,
+        question: "How would you describe yourself?",
+        choice1: 'Empathetic',
+        choice2: 'Problem focused',
+        choice3: 'Detail oriented',
+        choice4: 'Optimistic',
+        choice5: 'Solutions oriented'
+      }
+
+    ]
+
+    //---------------------- Question Component ----------------------------------//
+
+    class Question extends React.Component {
+      render(props) {
+        return (
+          <div className="jumbotron">
+            <h3 className="display-4"> {this.props.question} </h3>
+          </div>
+        )
+      }
+    }
+
+    //---------------------- App.js Component ----------------------------------//
+    class App extends React.Component {
+      //****** question State *******
+
+      //state will always be an object
+      constructor() {
+        super()
+        this.state = {
+          selectQuest: (0),
+          setSelectQuest: (0),
+          selectAnswer: (''),
+          setSelectAnswer: (''),
+          answers: ([]),
+          setAnswers: ([]),
+          error: (''),
+          setError: (''),
+          count: (0),
+          setCount: (0)
+        }
+      }
+
+      render() {
+
+        // const [selectQuest, setSelectQuest] = useState(0)
+        // const [selectAnswer, setSelectAnswer] = useState('')
+        // const [answers, setAnswers] = useState([]);
+        // const [error, setError] = useState('');
+        // const [count, setCount] = useState(0);
+
+        const questions = QA[this.state.selectQuest];
+
+        console.log(QA.length);
+        console.log(this.state)
+        console.log(this.state.answers)
+
+        function increment() {
+          this.state.setCount(prevCount => prevCount + 1)
+        }
+
+        const handleClick = e => {
+          this.state.setSelectAnswer(e.target.value)
+        }
+
+
+
+        const next = () => {
+          const answer = { questionsId: questions.id, answer: this.state.selectAnswer };
+          this.state.answers.push(answer);
+          this.state.setAnswers(this.state.answers);
+          this.state.setSelectAnswer('');
+
+          if (this.state.selectQuest + 1 < QA.length) {
+            this.state.setSelectQuest(this.state.selectQuest + 1);
+            return;
+          }
+        }
+
+
+
+        return (
+          <div>
+            <Progress
+              total={QA.length}
+              current={this.state.selectQuest + 1}
+            />
+            <Question
+              question={questions.question}
+            />
+
+            <h2> Score: {this.state.count} </h2>
+
+            <AnswerComp
+              question={questions}
+              selectAnswer={
+                this.state.selectAnswer
+              }
+              handleClick={handleClick, increment}
+            />
+            <button className="btn btn-success btn-lg btn-block" onClick={next}> Next </button>
+
+          </div>
+        )
+      }
+    }
+
+    //---------------------- RenderDOM Component ----------------------------------//
+    ReactDOM.render(<App />, document.getElementById("root"))
+  </script>
+
 </body>
 
 </html>
