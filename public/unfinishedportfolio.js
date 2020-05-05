@@ -43,6 +43,7 @@ function editProfile() {
             tmpPortfolio = {
                 firstName: "",
                 lastName: "",
+                profback: 1,
                 city: "",
                 willMove: false,
                 falseChecked: "checked",
@@ -55,6 +56,7 @@ function editProfile() {
             var tmpPortfolio = {
                 firstName: results[0].first_name,
                 lastName: results[0].last_name,
+                profback: results[0].profback,
                 city: results[0].city,
                 willMove: false,
                 falseChecked: "checked",
@@ -128,14 +130,68 @@ function editProfile() {
                     <input type="text" class="form-control" id="website" value="${tmpPortfolio.website}" maxlength="60">
                 </div>
             </div>
+            <h4 style='text-align:center;'> Select a Background! </h4>
+            <br>
+            <div id='imgSelection' value='${tmpPortfolio.profback}'>
+                <div class='row'>
+                    <div class='col'>
+                        <img class='backSelect' id='1' src='./images/1.png'>
+                    </div>
+                    <div class='col'>
+                        <img class='backSelect' id='2' src='./images/2.png'>
+                    </div>
+                    <div class='col'>
+                        <img class='backSelect' id='3' src='./images/3.png'>
+                    </div>
+                    <div class='col'>
+                        <img class='backSelect' id='4' src='./images/4.png'>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col'>
+                        <img class='backSelect' id='5' src='./images/5.png'>
+                    </div>
+                    <div class='col'>
+                        <img class='backSelect' id='6' src='./images/6.png'>
+                    </div>
+                    <div class='col'>
+                        <img class='backSelect' id='7' src='./images/7.png'>
+                    </div>
+                    <div class='col'>
+                        <img class='backSelect' id='8' src='./images/8.png'>
+                    </div>
+                </div>
+            </div>
         </form>
         <br>
         <br>
-        <a id="createPortfolioBtn" class="purpleBtn" style='color:white;' onClick='savePortfolio()'>
-            Save Portfolio
-        </a>`);
+        <div class="row">
+            <a id="createPortfolioBtn" class="purpleBtn" onClick='savePortfolio()' style='margin-bottom: 100px;'>
+                Save Portfolio
+            </a>
+        </div>
+        `);
+        document.getElementById(`${tmpPortfolio.profback}`).style.border = "4px solid red";
+        var imgBtns = document.getElementsByClassName('backSelect');
+        var imgSelection = document.getElementById('imgSelection');
+        for(var i = 0; i < imgBtns.length; i++) {
+            imgBtns[i].addEventListener('click', function () {
+                for(var j = 0; j < imgBtns.length; j++) {
+                    imgBtns[j].style.border = "4px solid black";
+                }
+                console.log(this.id);
+                if(this.id !== null) {
+                    this.style.border = "4px solid red";
+                    imgSelection.setAttribute("value", this.id);
+                }
+
+            });
+        }
+
     });
+
 }
+
 function isEmpty(string) {
     if(string === null || string === "" || /\s/g.test(string) === "") {
         return true;
@@ -153,6 +209,7 @@ function savePortfolio() {
     const profilePicField = document.getElementById('profilePic');
     const userDescriptionField  = document.getElementById('userDescription');
     const websiteField = document.getElementById('website');
+    const profbackContainer = document.getElementById('imgSelection').getAttribute('value');
     var willMoveValue;
 
     if(isYesChecked.checked) {
@@ -179,6 +236,7 @@ function savePortfolio() {
     let a = {
         firstName: `${firstNameField.value}`,
         lastName: `${lastNameField.value}`,
+        profback: profbackContainer,
         city: `${cityField.value}`,
         willMove: willMoveValue,
         profilePic: `${profilePicField.value}`,
@@ -187,11 +245,18 @@ function savePortfolio() {
         userID: user.id
     };
 
+    if(websiteField.value) {
+        if(websiteField.value.length > 10) {
+            if(websiteField.value.slice(0, 8).toLowerCase() !== "https://") {
+                a.website = "https://" + websiteField.value;
+            }
+        }
+    }
+
     if(isEmpty(a.profilePic)){
         a.profilePic = profPicHolder;
     }
     
-
     var route;
 
     if(newAcc) {
@@ -208,43 +273,8 @@ function savePortfolio() {
         $( '#top' ).empty();
         $( '#top' ).html(`<h1 style='text-align: center;'>Updated!</h1>`);
         setTimeout(function() {
-            location.reload();
+            window.location.reload();
         },1000);
     });
 
 }
-// let a = {
-//     email : email.value,
-//     password : password.value,
-//     isRecruiter : isRecruiter.value
-// };
-
-// function getProfile() {
-//     const user = JSON.parse(window.localStorage.getItem('user'));
-//     let b = {
-//         userID: user.id
-//     }
-//     $.ajax("/api/userPortfolio", {
-//         type: "GET",
-//         data: b
-//     }).then( function (results) {
-//         console.log(results);
-//         var toRtrn = {
-//             firstName: results[0].first_name,
-//             lastName: results[0].last_name,
-//             city: results[0].city,
-//             willMove: false,
-//             falseChecked: "checked",
-//             profilePic: results[0].profile_img,
-//             userDescription: results[0].descrip,
-//             website: results[0].website
-//         };
-//         if(results[0].willmove === 1) {
-//             toRtrn.willMove = true;
-//             toRtrn.falseChecked = "";
-//         }
-//         console.log(toRtrn);
-//         return toRtrn;
-//     });
-    
-// }

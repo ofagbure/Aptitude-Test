@@ -28,27 +28,32 @@ app.use(session({
 // Right now it's good for testing
 app.get("/api/allusers", (req, res) => {
     users.allUsers( function (result) {
-        res.send(dataVomitter(result));
+        res.send(result);
+    });
+});
+app.get("/api/getUser", (req, res) => {
+    users.selectAUser(req.query.email, function (result) {
+        res.send(result);
     });
 });
 app.get("/api/allApplicants", (req, res) => {
     users.allApplicants( function (result) {
-        res.send(dataVomitter(result));
+        res.send(result);
     });
 });
 app.get("/api/allRecruiters", (req, res) => {
     users.allRecruiters( function (result) {
-        res.send(dataVomitter(result));
+        res.send(result);
     });
 });
 app.put("/api/addUser", (req, res) => {
     users.addUser(req.body.email, req.body.password, req.body.isRecruiter, function (result) {
-        console.log('added user');
+        console.log('added user ' + JSON.stringify(result));
     });
     res.status(200).end();
 });
 app.put("/api/addPortfolio", (req, res) => {
-    users.addPortfolio(req.body.firstName, req.body.lastName, req.body.city, req.body.willMove, req.body.profilePic, req.body.userDescription, req.body.website, req.body.userID, function (result) {
+    users.addPortfolio(req.body.firstName, req.body.lastName, req.body.city, req.body.willMove, req.body.profilePic, req.body.userDescription, req.body.website, req.body.userID, req.body.profback, function (result) {
         console.log('added portfolio');
     });
     res.status(200).end();
@@ -57,10 +62,26 @@ app.get("/api/userPortfolio", (req, res) => {
     users.selectPortfolio(req.query.userID, function (result) {
         res.send(result);
     });
-    
+});
+app.get("/api/getInterviews", (req, res) => {
+    users.getInterviews(req.query.recruiterID, function (result) {
+        res.send(result);
+    });
+});
+
+app.put("/api/addInterview", (req, res) => {
+    users.addInterview(req.body.userID, req.body.interviewTime, req.body.interviewLocation, req.body.recruiterID, function (result) {
+        console.log('added interview');
+    });
+    res.status(200).end();
+});
+app.get("/api/getUserInterview", (req, res) => {
+    users.getUserInterview(req.query.userID, function (result) {
+        res.send(result);
+    });
 });
 app.put("/api/updatePortfolio", (req, res) => {
-    users.updatePortfolio(req.body.firstName, req.body.lastName, req.body.city, req.body.willMove, req.body.profilePic, req.body.userDescription, req.body.website, req.body.userID, function (result) {
+    users.updatePortfolio(req.body.firstName, req.body.lastName, req.body.profback, req.body.city, req.body.willMove, req.body.profilePic, req.body.userDescription, req.body.website, req.body.userID, function (result) {
         console.log('updated portfolio');
     });
     res.status(200).end();
@@ -84,6 +105,92 @@ app.get("/auth", (req, res) => {
             res.send(false);
         }
     });
+});
+app.get("/admin", (req, res) => {
+    if(req.query.password === "password") {
+        res.send(`
+            <div class='container text-center' style='margin-top: 25vh; padding: 10px; border: 3px solid black; border-radius: 25px;'>
+                <div class='row'>
+                    <div class='col-md-12'>
+                        <a style='float: right; padding: 0px 20px 20px;' href='/signin'>[X]</a>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-12'>
+                        <h1>Add A User!</h1>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-12'>
+                        <label> email <label>
+                        <input type='text' id='email'></input>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-12'>
+                        <label> password <label>
+                        <input type='text' id='password'></input>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-12'>
+                        <label> Recruiter Account? <label>
+                        <select class="align-middle" multiple id='isRecruiter' size='2' style='overflow-y: hidden'>
+                            <option value='1'>Yes</option>
+                            <option value='0'>No</option>
+                        </select multiple>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-12'>
+                        <button id='addBtn'>Add</button>
+                    </div>
+                </div>
+                <h1 id= 'added' style='opacity: 0; transition: all 200ms;'>Added</h1>
+            </div>
+
+    <script>
+
+    const addBtn = document.getElementById('addBtn');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+    const isRecruiter = document.getElementById('isRecruiter');
+    const added = document.getElementById('added');
+    addBtn.style.transition = "all 200ms";
+
+    addBtn.addEventListener("click", function() {
+        let a = {
+            email : email.value,
+            password : password.value,
+            isRecruiter : isRecruiter.value
+        };
+        if (email.value === "" || password.value === "" || isRecruiter.value === "" ) {
+            setTimeout(function() {
+                addBtn.style.color = "initial";
+            },2000);
+            addBtn.style.color = "red";
+            return;
+        }
+        console.log("a has been set" + JSON.stringify(a));
+        $.ajax("/api/addUser", {
+            type: "PUT",
+            data: a
+        }).then( function () {
+            email.value = "";
+            password.value = "";
+            added.style.opacity = 1;
+            setTimeout(function() {
+                added.style.opacity = 0;
+            },2000);
+        });
+    });
+
+    </script>
+
+    `);
+    } else {
+        res.send('INVALID');
+    }
 });
 app.get("/logout", (req, res) => {
     req.session.loggedin = false;
@@ -112,7 +219,6 @@ app.get('/quiz', function(req, res) {
 });
 
 app.get('/candidateportal', function(req, res) {
-    console.log(req.session);
     if (req.session.loggedin) {
         res.sendFile('public/candidateportal.html', {root: __dirname });
 	} else {
@@ -124,113 +230,10 @@ app.get('/signin', function(req, res) {
     res.sendFile('public/signinpage.html', {root: __dirname });
 });
 
-app.get("/addUser", (req, res) => {
-    res.send(`
-    <h1>Add A User!</h1>
-    <label>email<label>
-    <input type='text' id='email'></input>
-    <label>password<label>
-    <input type='text' id='password'></input>
-    <label>are you a recruiter?<label>
-    <select multiple id='isRecruiter'>
-        <option value='1'>Yes</option>
-        <option value='0'>No</option>
-    </select multiple>
-    <button id='addBtn'>Add</button>
-    <br>
-    <a href='/doesntmatterwhatshere'>login</a>
-    <script>
-
-    var jqueryImport = document.createElement("script");
-    jqueryImport.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js';
-    document.head.appendChild(jqueryImport);
-
-    const addBtn = document.getElementById('addBtn');
-    const email = document.getElementById('email');
-    const password = document.getElementById('password');
-    const isRecruiter = document.getElementById('isRecruiter');
-
-    addBtn.addEventListener("click", function() {
-        let a = {
-            email : email.value,
-            password : password.value,
-            isRecruiter : isRecruiter.value
-        };
-        console.log("a has been set" + JSON.stringify(a));
-        $.ajax("/api/addUser", {
-            type: "PUT",
-            data: a
-        }).then( function () {
-            console.log("here");
-        });
-    });
-
-    </script>
-
-    `);
-
-});
-
 app.get('*', function(req, res) {
     res.sendFile('public/index.html', {root: __dirname });
-    // res.send(`
-    // <h1>Login!</h1>
-    // <label>email<label>
-    // <input type='text' id='email'></input>
-    // <label>password<label>
-    // <input type='text' id='password'></input>
-    // <button id='loginBtn'>Login</button>
-    // <br>
-    // <a href='/addUser'>create account</a>
-
-    // <script>
-
-    // var jqueryImport = document.createElement("script");
-    // jqueryImport.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js';
-    // document.head.appendChild(jqueryImport);
-
-    // const loginBtn = document.getElementById('loginBtn');
-    // const email = document.getElementById('email');
-    // const password = document.getElementById('password');
-
-    // loginBtn.addEventListener("click", function() {
-    //     $.ajax({
-    //         url: "/auth",
-    //         type: "GET",
-    //         data: {
-    //             email : email.value,
-    //             password : password.value
-    //         },
-    //         success: function(response) {
-    //             console.log(response);
-    //             document.cookie.email = response[0].email;
-    //             document.cookie.loggedIn = true;
-    //             window.location = "/home";
-    //         },
-    //         error: function(error) {
-    //             console.log(error);
-    //         }
-    //     });
-    // });
-
-    // </script>
-    // `);
 });
+
 app.listen(PORT, () => {
     console.log("Server listening on: http://localhost:" + PORT);
 });
-
-
-//This is just a function to iterate through recieved DB info
-function dataVomitter(item) {
-    var result = '';
-    for(var i = 0; i < item.length; i++) {
-        for (var key in item[i]) {
-            if (item[i].hasOwnProperty(key)) {
-                result += `<p>${key}: ${item[i][key]}</p>`;
-            }
-        }
-        result += "<p>-------------</p>";
-    }
-    return result;
-}
