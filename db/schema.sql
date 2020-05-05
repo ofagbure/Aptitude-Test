@@ -17,15 +17,14 @@ profile_id int NOT NULL AUTO_INCREMENT,
 profile_img varchar ( 512 ),
 first_name varchar ( 64 ) NOT NULL,
 last_name varchar ( 64 ) NOT NULL,
-tagline varchar ( 64 ),
+profback int NOT NULL DEFAULT 1,
 website varchar ( 64 ),
 descrip varchar( 512 ),
 city varchar ( 64 ) NOT NULL,
 willmove boolean NOT NULL,
 testresults varchar ( 64 ),
 user_id int NOT NULL,
-PRIMARY KEY ( profile_id ),
-FOREIGN KEY ( user_id ) REFERENCES User ( user_id )
+PRIMARY KEY ( profile_id )
 );
 
 CREATE TABLE recruiterprofile (
@@ -37,11 +36,21 @@ PRIMARY KEY ( recruiter_id ),
 FOREIGN KEY ( user_id ) REFERENCES User ( user_id )
 );
 
+
+
 CREATE TABLE interviews (
 interview_id int NOT NULL AUTO_INCREMENT,
 user_id INT NOT NULL,
 interview_time DATETIME NOT NULL,
-interview_location varchar ( 64 ) NOT NULL,
-PRIMARY KEY ( interview_id ),
-FOREIGN KEY ( user_id ) REFERENCES User ( user_id )
+interview_location varchar ( 512 ) NOT NULL,
+recruiter_id INT NOT NULL,
+PRIMARY KEY ( interview_id )
 );
+
+CREATE TABLE applications (
+    application_id int NOT NULL AUTO_INCREMENT,
+    user_id int NOT NULL,
+    date_applied DATETIME NOT NULL,
+    career_field varchar(512),
+    PRIMARY KEY ( application_id )
+)

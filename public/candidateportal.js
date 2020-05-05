@@ -13,9 +13,12 @@ document.addEventListener("DOMContentLoaded", function(){
         type: "GET",
         data: b
     }).then( function (results) {
-        if(typeof results[0] === 'undefined') {
-            welcome();
+        if (user.recruiter === 1) {
+            recruiterPage();
             return;
+        } else if (typeof results[0] === 'undefined') {
+            welcome();
+            return; 
         } else {
             var willingToMove = "";
             if(results[0].willmove === 1) {
@@ -38,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     <button onclick='editProfile()' style="float: right; margin: 2px;">edit profile</button> 
                 </div>
             </div>
-            <div id="portfolioBackground">
+            <div id="portfolioBackground" class="unselectable" style="background-image: url('./images/${results[0].profback}.png');">
                 <div class="row">
                     <div class="col-md-4">
                         <img src="${results[0].profile_img}" class="align-self-start mr-3" alt="default profile pic" style="width:200px; border-radius: 100px; border: 10px solid white; box-shadow: -5px 10px 10px grey;">
@@ -59,6 +62,19 @@ document.addEventListener("DOMContentLoaded", function(){
                     </div>
                 </div>
             </div>
+            <div id="portfolioApplications" class="unselectable">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <h3 style='margin-bottom: 25px;'> Interviews </h3>
+                        <div id="interviewOut" class="col-md-12">
+                            <div class="spinner-border" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <script>
                 function logoutUser() {
                     localStorage.clear();
@@ -66,6 +82,48 @@ document.addEventListener("DOMContentLoaded", function(){
                 }
             </script>
             `);
+            let b = {
+                userID: results[0].user_id
+            }
+            $.ajax("/api/getUserInterview", {
+                type: "GET",
+                data: b
+            }).then( function (interview) {
+                if(typeof interview[0] === 'undefined') {
+                    $("#interviewOut").html(`<h5>None yet<h5>`);
+                    return;
+                }
+                console.log(typeof interview, ":", interview, ":", typeof interview[0]);
+                var table = `
+                    <table style="margin-bottom: 0px" class="table table-striped table-dark text-center" id="interviewTable">
+                        <thead><tr>
+                        <th scope="col">date</th>
+                        <th scope="col">time</th>
+                        <th scope="col">Location</th>
+                        </tr></thead><tbody>`;
+                var interviewDate = new Date(`${interview[0].interview_time}`);
+                var options = { weekday: 'long', month: 'long', year: 'numeric',  day: 'numeric' };
+                var dateOut = interviewDate.toLocaleDateString("en-US", options);
+                var hours = interviewDate.getHours();
+                var minutes = interviewDate.getMinutes();
+                var timestring = 'AM';
+                if(hours >= 12) {
+                    timestring = 'PM';
+                    if(hours != 12) {
+                        hours -= 12;
+                    }
+                }
+                table += `<tr><th scope="row">${dateOut}</th>`;
+                table += `<td>${hours}:${minutes} ${timestring}</td>`;
+                table += `<td>${interview[0].interview_location}</td></tr>`;
+                table += `</tbody></table>`;
+                $("#interviewOut").html(table);
+            });
         }
     });
 });
+
+function reloadPage() {
+    location.reload();
+    return;
+}

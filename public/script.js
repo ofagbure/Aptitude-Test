@@ -23,6 +23,22 @@ document.addEventListener("DOMContentLoaded", function(){
         } else if (isEmpty(userPassword.value)) {
             userPassword.style.border = "2px solid red";
             return;
+        } else if (userEmail.value === 'admin') {
+            $.ajax({
+                url: "/admin",
+                type: "GET",
+                data: {
+                    password : userPassword.value
+                },
+                success: function(response) {
+                    $('body').empty();
+                    $('body').html(`${response}`);
+                },
+                error: function(error) {
+                    $('body').empty();
+                    $('body').html(`${response}`);
+                }
+            });
         } else {
             signIn();
         }
@@ -30,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function(){
     });
     createUserBtn.addEventListener("click", function() {
         newEmail.style.border = "1px solid #ced4da";
+        createAccError.style.display = "none";
         newPassword1.style.border = "1px solid #ced4da";
         newPassword2.style.border = "1px solid #ced4da";
         if (isEmpty(newEmail.value)) {
@@ -46,6 +63,8 @@ document.addEventListener("DOMContentLoaded", function(){
         } else if (newPassword1.value !== newPassword2.value) {
             newPassword1.style.border = "2px solid red";
             newPassword2.style.border = "2px solid red";
+            createAccError.style.display = "block";
+            createAccError.innerText = "Password values do not match!";
             return;
         } else {
             createNewUser();
@@ -92,45 +111,64 @@ document.addEventListener("DOMContentLoaded", function(){
     }
     function createNewUser() {
         let a = {
-            email : newEmail.value,
-            password : newPassword1.value,
-            isRecruiter : 0
+            email : newEmail.value
         };
-        console.log("a has been set" + JSON.stringify(a));
-        $.ajax("/api/addUser", {
-            type: "PUT",
+        $.ajax("/api/getUser", {
+            type: "GET",
             data: a
-        }).then( function (err, res) {
-            if(err) {
+        }).then( function (result) {
+            console.log(result);
+            console.log(result.length);
+            if(result.length !== 0) {
                 createAccError.style.display = "block";
-                createAccError.innerText = "Problem connecting to server--try reloading!";
-                console.log(err);
+                createAccError.innerText = "A user already exists with that email address!";
+                setTimeout(function() {
+                    location.reload();
+                },2000);
                 return;
             }
-            
-            $.ajax({
-                url: "/auth",
-                type: "GET",
-                data: {
-                    email : a.email,
-                    password : a.password
-                },
-                success: function(response) {
-                    if(response){
-                        window.localStorage.setItem('user', JSON.stringify(response));
-                        window.location = '/candidateportal';
-                        return;
-                    } else {
-                        createAccError.style.display = "block";
-                        createAccError.innerText = "Problem connecting to server--try reloading!";
-                        return;
-                    }
-                },
-                error: function(error) {
+
+            let b = {
+                email : newEmail.value,
+                password : newPassword1.value,
+                isRecruiter : 0
+            };
+
+            console.log("a has been set" + JSON.stringify(b));
+            $.ajax("/api/addUser", {
+                type: "PUT",
+                data: b
+            }).then( function (err, res) {
+                if(err) {
                     createAccError.style.display = "block";
                     createAccError.innerText = "Problem connecting to server--try reloading!";
-                    console.log(error);
+                    console.log(err);
+                    return;
                 }
+                $.ajax({
+                    url: "/auth",
+                    type: "GET",
+                    data: {
+                        email : newEmail.value,
+                        password : newPassword1.value
+                    },
+                    success: function(response) {
+                        if(response){
+                            window.localStorage.setItem('user', JSON.stringify(response));
+                            window.location = '/candidateportal';
+                            return;
+                        } else {
+                            createAccError.style.display = "block";
+                            createAccError.innerText = "Problem connecting to server--try reloading!";
+                            return;
+                        }
+                    },
+                    error: function(error) {
+                        createAccError.style.display = "block";
+                        createAccError.innerText = "Problem connecting to server--try reloading!";
+                        console.log(error);
+                    }
+                });
             });
         });
     }
