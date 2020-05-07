@@ -12,7 +12,7 @@ function App() {
         <Route exact path="/quiz" component={Quiz} />
         <Route exact path="/" component={QuizHome} />
 
-        <Footer />
+        <Footer  />
       </div>
     </Router>
   );
