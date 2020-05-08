@@ -7,8 +7,8 @@ import QA from '../../components/QAData'
 
 function Quiz() {
 
-    const [selectQuest, setSelectQuest] = useState(0)
-    const [selectAnswer, setSelectAnswer] = useState('')
+    const [selectQuest, setSelectQuest] = useState(0);
+    const [selectAnswer, setSelectAnswer] = useState('');
     const [answers, setAnswers] = useState([]);
     const [error, setError] = useState('');
     const [count, setCount] = useState(0);

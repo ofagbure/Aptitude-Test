@@ -9,9 +9,9 @@ function App() {
   return (
     <Router>
       <div>
-        <Route exact path="/quiz" component={Quiz} />
-        <Route exact path="/" component={QuizHome} />
-
+        <Route exact path="/quizStart" component={Quiz} />
+        <Route exact path="/quiz" component={QuizHome} />
+        
         <Footer  />
       </div>
     </Router>
