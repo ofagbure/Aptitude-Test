@@ -1,6 +1,6 @@
 # Aptitude Test
 
-You can visit the deployed site here
+You can visit the deployed site [here](https://choober.herokuapp.com/)
 
 
 ## Table of Contents 
@@ -18,6 +18,10 @@ We will be building an Applicant Tracking System (ATS). This application allows 
 
 There will also be a back-end recruiter view of the website that shows recruiters the different applicants, what their test scores were, and any jobs they’ve applied to. Recruiters will have the ability to progress, reject and hire applicants, as well as move their application to a different role. 
 
+The app looks like the below:
+
+![Landing Page](./client/public/images/landingPage.png)
+
 
 ## Why is this important
 As a recent graduate, or someone who would like to apply to a role in a complex organization, it may sometimes be hard to figure out what role you would be a good fit for. Our aptitude test cuts out the need to open all jobs and read through a job description to find a role that fits. It also reduced the risk of the company losing out on qualified/ good, diverse candidates who may have applied to the wrong role by guiding them in the right direction.
@@ -34,15 +38,20 @@ So that I have a better chance of being selected/ getting an offer
 
 
 ## Technologies Used
-This application is built with standard HTML5, and CSS.
-It also makes use of the below technologies
-
+This application is built with the below technologies;
+* Bootstrap css framework
+* Create React App
+* Express
+* Mongoose Database
+* Passport for User Authentication
 
 ## Directions for Future Development
-
+* Make the website run efficiently with a high score in performance and PWA (Progressive Web Apps)
+* Build out the quiz feature a little more to make it work for an array of different roles and aptitudes
+* Improve UI/UX of application
+* Add security features
 
 ## License
-
 MIT License
 
 Copyright (c) [2020] [Femi Fagbure]
