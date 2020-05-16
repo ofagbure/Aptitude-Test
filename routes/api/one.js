@@ -17,5 +17,4 @@ router.route("/interview/applicant/email/:email")
 router.route("/interview/recruiter/email/:email")
     .get(userController.findAnInterviewRecruiter);
 
-
 module.exports = router;

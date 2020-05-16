@@ -128,7 +128,7 @@ function Quiz() {
                   <button
                     type='button'
                     onClick={() => { history.push('/interview/applicant/email/:email') }}>
-                    Apply Here! 
+                    Save! 
                   </button>
                 )} />
               )

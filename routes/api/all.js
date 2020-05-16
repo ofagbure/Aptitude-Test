@@ -11,4 +11,13 @@ router.route("/profiles")
 router.route("/interviews")
     .get(userController.findAllInterviews);
 
+router.route("/interviews/email/:email")
+    .get(userController.findAllRecruiterInterviews);
+
+router.route("/applicants")
+    .get(userController.findAllApplicants);
+
+router.route("/recruiters")
+    .get(userController.findAllRecruiters);
+
 module.exports = router;
