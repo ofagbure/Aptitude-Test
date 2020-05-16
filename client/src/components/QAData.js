@@ -46,13 +46,14 @@ const QA = [
     },
     {
         id: 6,
-        question: "Processing",
-        // choice1: 'Empathetic',
-        // choice2: 'Problem focused',
-        // choice3: 'Detail oriented',
-        // choice4: 'Optimistic',
-        // choice5: 'Solutions oriented'
-    }
+        question: "You have finshed with the test!",
+        choice1: 'You have finshed with the test!',
+        choice2: 'You have finshed with the test!',
+        choice3: 'You have finshed with the test!',
+        choice4: 'You have finshed with the test!',
+        choice5: 'You have finshed with the test!'
+    },
+    
     
 ]
 

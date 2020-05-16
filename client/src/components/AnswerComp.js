@@ -2,37 +2,42 @@ import React from 'react';
 import Answer from './Answer'
 
 function AnswerComp(props) {
+
     return (
         <div>
             <Answer
-                increment={1}
                 answer={props.question.choice1}
                 handleClick={props.handleClick}
-                selected={props.selectAnswer === '1'}
+                selected={'1'}
             />
             <Answer
-                increment={2}
+                className={props.question.choice2}
                 answer={props.question.choice2}
                 handleClick={props.handleClick}
-                selected={props.selectAnswer === '2'}
+                selected={'2'}
             />
-            <Answer 
-                increment={3}
+            <Answer
+
+
+                className={props.question.choice3}
                 answer={props.question.choice3}
                 handleClick={props.handleClick}
-                selected={props.selectAnswer === '3'}
+                selected={'3'}
             />
             <Answer
-                increment={4}
+
+
+                className={props.question.choice4}
                 answer={props.question.choice4}
                 handleClick={props.handleClick}
-                selected={props.selectAnswer === '4'}
+                selected={'4'}
             />
             <Answer
-                increment={5}
+
+                className={props.question.choice5}
                 answer={props.question.choice5}
                 handleClick={props.handleClick}
-                selected={props.selectAnswer === '5'}
+                selected={'5'}
             />
         </div>
     )

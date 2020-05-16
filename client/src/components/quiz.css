@@ -79,7 +79,7 @@ body {
   
   button {
       background-color: #F6BF42;
-      position: absolute;
+      position: relative;
       margin: 0;
       top: 60%;
       left: 50%;
