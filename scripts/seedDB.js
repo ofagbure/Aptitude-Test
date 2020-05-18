@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 const db = require("../models");
+const URI = require('../config/index')
 
 mongoose.connect(
-    process.env.MONGODB_URI ||
-    "mongodb://localhost/aptitudedb"
+    "mongodb://localhost/aptitudedb" || URI 
 );
 
 const userSeed = [
@@ -33,22 +33,22 @@ const userSeed = [
         recruiter: false
     },
     {
-        email: "testrecruiter1@test.com",
+        email: "John@company.com",
         password: "password",
         recruiter: true
     },
     {
-        email: "testrecruiter2@test.com",
+        email: "Abe@company.com",
         password: "password",
         recruiter: true
     },
     {
-        email: "testrecruiter3@test.com",
+        email: "Betty@company.com",
         password: "password",
         recruiter: true
     },
     {
-        email: "testrecruiter4@test.com",
+        email: "Niccage@test.com",
         password: "password",
         recruiter: true
     },
@@ -73,8 +73,8 @@ const profileSeed = [
         testResults: "Human Resources"
     },
     {
-        firstName: "FirstTwo",
-        lastName: "LastTwo",
+        firstName: "Bennie",
+        lastName: "Evans",
         email: "testapplicant2@test.com",
         profileImg: "defaultImage",
         profileBackground: 1,
@@ -124,13 +124,13 @@ const profileSeed = [
 
 const interviewSeed = [
     {
-        recruiterEmail: "testrecruiter1@test.com",
+        recruiterEmail: "Adam@company.com",
         applicantEmail: "testapplicant1@test.com",
         interviewTime: "2020-05-19T21:42",
         interviewLocation: "Chilli's"
     },
     {
-        recruiterEmail: "testrecruiter2@test.com",
+        recruiterEmail: "Abe@company.com",
         applicantEmail: "testapplicant2@test.com",
         interviewTime: "2020-05-19T22:42",
         interviewLocation: "Chilli's"

@@ -94,7 +94,7 @@ function RecruiterPortal() {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="userProfTitle">Portfolio</h5>
-                            <a href="#" type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <a href="javascript:void(0)" type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </a>
                         </div>
@@ -105,8 +105,8 @@ function RecruiterPortal() {
                                         <img id='modalProfPic' src="" className="align-self-start mr-3" alt="profile pic" style={{ width: "200px", borderRadius: "100px", border: "10px solid white", boxShadow: "-5px 10px 10px grey" }} />
                                     </div>
                                     <div className="col-md-6">
-                                        <h1 id='modalName'></h1>
-                                        <a id='modalPortfolio' href="#" target="_blank">Portfolio</a>
+                                        <h1 id='modalName'>-</h1>
+                                        <a id='modalPortfolio' href="javascript:void(0)" target="_blank" rel="noopener noreferrer">Portfolio</a>
                                         <p id='modalLocation'>city ••• willMove?</p>
                                         <h5>Test Result:</h5>
                                         <p id='modalTestResults'>Test Result</p>
@@ -129,8 +129,8 @@ function RecruiterPortal() {
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="intModName"></h5>
-                            <a href="#" type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <h5 className="modal-title" id="intModName">-</h5>
+                            <a href="javascript:void(0)" type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </a>
                         </div>
@@ -164,8 +164,7 @@ function RecruiterPortal() {
                             <div className="row">
                                 <div className="col-md-12">
                                     <input type="datetime-local" id="interviewTime" name="interviewTime" />
-                                    <a href="#"  id="scheduleBtn" style={{ margin: "5px" }}>Schedule!</a>
-                                    {/* onClick="" scheduleSend('${id}') */}
+                                    <a href="javascript:void(0)"  id="scheduleBtn" style={{ margin: "5px" }}>Schedule!</a>
                                 </div>
                             </div>
                         </div>
@@ -235,7 +234,7 @@ function scheduledInterviews() {
                 var timestring = 'AM';
                 if (hours >= 12) {
                     timestring = 'PM';
-                    if (hours != 12) {
+                    if (hours !== 12) {
                         hours -= 12;
                     }
                 }
@@ -267,7 +266,6 @@ function allApplicants() {
             for (var i = 0; i < results.data.length; i++) {
                 axios.get(`/api/one/profile/email/${results.data[i].email}`)
                     .then(function (result) {
-                        const fullName = `${result.data.firstName} ${result.data.lastName}`;
                         const email = `${result.data.email}`;
                         if (result.data !== null) {
                             let table = `<tr><th scope="col">${result.data.email}</th>`
@@ -326,11 +324,11 @@ function tableFilter() {
     } else {
         let tmpOps = options;
         for(var i = 0; i < search.length; i++) {
-            for(var j = 0; j < tmpOps.length; j++) {
-                if(search.slice(0,i+1) === tmpOps[j].text.slice(0,i+1).toLowerCase()) {
-                    tmpOps[j].style.display = "";
+            for(var k = 0; k < tmpOps.length; k++) {
+                if(search.slice(0,i+1) === tmpOps[k].text.slice(0,i+1).toLowerCase()) {
+                    tmpOps[k].style.display = "";
                 } else {
-                    tmpOps[j].style.display = "none";
+                    tmpOps[k].style.display = "none";
 
                 }
             }

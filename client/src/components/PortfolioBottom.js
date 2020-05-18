@@ -1,5 +1,4 @@
 import React from 'react'
-import images from '../images';
 
 const axios = require('axios');
 
@@ -22,7 +21,7 @@ function PortfolioBottom() {
         var timestring = 'AM';
         if (hours >= 12) {
             timestring = 'PM';
-            if (hours != 12) {
+            if (hours !== 12) {
                 hours -= 12;
             }
         }

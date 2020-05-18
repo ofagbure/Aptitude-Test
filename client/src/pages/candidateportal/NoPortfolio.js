@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Entry from '../../components/Entry';
 import Button from '../../components/Button';
 import images from '../../images';
@@ -89,15 +89,15 @@ function NoPortfolio(props) {
                 <h1 style={{textAlign: "center"}}>User Information</h1>
                 <div className="form-row">
                     <div className="form-group col-md-6">
-                        <Entry req="initial" type="text" name="firstName" disp="First Name" req="initial"/>
+                        <Entry req="initial" type="text" name="firstName" disp="First Name"/>
                     </div>
                     <div className="form-group col-md-6">
-                        <Entry req="initial" type="text" name="lastName" disp="Last Name" req="initial"/>
+                        <Entry req="initial" type="text" name="lastName" disp="Last Name"/>
                     </div>
                 </div>
                 <div className="form-row">
                     <div className="form-group col-md-6">
-                        <Entry req="initial" type="text" name="city" disp="City" req="initial"/>
+                        <Entry req="initial" type="text" name="city" disp="City"/>
                     </div>
                     <div className="animate form-group col-md-6">
                         <span style={{color: "red", fontWeight: "bolder"}}>* </span>
@@ -151,15 +151,15 @@ function NoPortfolio(props) {
                 <h1 style={{textAlign: "center"}}>User Information</h1>
                 <div className="form-row">
                     <div className="form-group col-md-6">
-                        <Entry req="initial" type="text" name="firstName" disp="First Name" req="initial"/>
+                        <Entry req="initial" type="text" name="firstName" disp="First Name"/>
                     </div>
                     <div className="form-group col-md-6">
-                        <Entry req="initial" type="text" name="lastName" disp="Last Name" req="initial"/>
+                        <Entry req="initial" type="text" name="lastName" disp="Last Name"/>
                     </div>
                 </div>
                 <div className="form-row">
                     <div className="form-group col-md-6">
-                        <Entry req="initial" type="text" name="city" disp="City" req="initial"/>
+                        <Entry req="initial" type="text" name="city" disp="City"/>
                     </div>
                     <div className="animate form-group col-md-6">
                         <span style={{color: "red", fontWeight: "bolder"}}>* </span>

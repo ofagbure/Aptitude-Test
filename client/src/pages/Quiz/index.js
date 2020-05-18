@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Progress from '../../components/Progress'
 import AnswerComp from '../../components/AnswerComp'
 import Question from '../../components/Question'

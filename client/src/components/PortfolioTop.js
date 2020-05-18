@@ -40,7 +40,7 @@ function PortfolioTop(props) {
                 </div>
                 <div className="col-md-6">
                     <h1 className="unselectable" id="usrName">{props.firstName} {props.lastName}</h1>
-                    <a id="usrWeb" href={props.website} target="_blank">Portfolio</a>
+                    <a id="usrWeb" href={props.website} target="_blank" rel="noopener noreferrer">Portfolio</a>
                     <p id="usrMov">{props.city} ••• <span id='moveDisp'></span></p>
                     <h5>Test Result:</h5>
                     <p>{props.testResults}</p>
@@ -70,14 +70,6 @@ function PortfolioTop(props) {
             </div>
         </div>
     );
-}
-
-function isEmpty(string) {
-    if(string === null || string === "" || /\s/g.test(string) === "") {
-        return true;
-    } else {
-        return false;
-    }
 }
 
 export default PortfolioTop

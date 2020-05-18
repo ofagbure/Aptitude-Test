@@ -16,7 +16,7 @@ function LoggedOut() {
                     <Entry key='emailLoginEntry' req="none" type="email" name="userEmail" disp="Email Address"/>,
                     <Entry key='passwordLoginEntry' req="none" type="password" name="userPassword" disp="Password"/>,
                     <div key='signInBtnContainer' className="text-center">
-                        <a className="btn btn-primary" id="userSignInBtn" style={{color:"white"}} onClick={signIn}>Sign In</a>
+                        <a className="btn btn-primary" id="userSignInBtn" style={{color:"white"}} onClick={signIn} href='javascript:void(0)'>Sign In</a>
                     </div>
                 ]}
             />
@@ -28,7 +28,7 @@ function LoggedOut() {
                     <Entry key='passwordCreateEntry' req="none" type="password" name="newPassword1" disp="Password"/>,
                     <Entry key='passwordCheckCreateEntry' req="none" type="password" name="newPassword2" disp="Re-type Password"/>,
                     <div key='createUserBtnContainer' className="text-center">
-                        <a className="btn btn-primary" id="createUserBtn" style={{color:"white"}} onClick={register}>Create Account</a>
+                        <a className="btn btn-primary" id="createUserBtn" style={{color:"white"}} onClick={register} href="javascript:void(0)">Create Account</a>
                     </div>
                 ]}
             />
@@ -87,7 +87,7 @@ function emailVaild(email) {
 The code for the emailValidation regex was taken from:
 https://www.w3resource.com/javascript/form/email-validation.php
 */
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+    if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
         return (true)
     }
     return (false)

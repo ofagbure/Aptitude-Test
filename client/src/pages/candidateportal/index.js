@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import ApplicantHome from "./ApplicantHome";
 import Navbar from "../../components/Navbar";
 
@@ -21,9 +21,6 @@ function CandidatePortal() {
     React.useEffect(() => {
         function resize() {
             setWindowHeight(`${window.innerHeight - 44 + "px"}`);
-        }
-        function loggedIn() {
-            setloggedIn(true);
         }
 
         window.addEventListener('resize', resize);
