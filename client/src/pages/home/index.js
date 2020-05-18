@@ -6,7 +6,6 @@ import placeholder3 from "../../images/placeholder 3.jpg"
 import jobDescrip from "../../images/job descriptions.jpg"
 import testPic from "../../images/test.jpeg"
 import newProfPic from "../../images/createprofile.jpg"
-import {withRouter} from 'react-router';
 
 function Home() {
     const [windowHeight, setWindowHeight] = useState(`${window.innerHeight + window.pageYOffset - 44 + "px"}`);
@@ -33,14 +32,14 @@ function Home() {
                 <br />
                 <div id="carousel" className="carousel slide" data-ride="carousel">
                     <div className="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src={placeholder1} class="d-block w-100" alt="..." />
+                        <div className="carousel-item active">
+                            <img src={placeholder1} className="d-block w-100" alt="..." />
                         </div>
-                        <div class="carousel-item">
-                            <img src={placeholder2} class="d-block w-100" alt="..." />
+                        <div className="carousel-item">
+                            <img src={placeholder2} className="d-block w-100" alt="..." />
                         </div>
-                        <div class="carousel-item">
-                            <img src={placeholder3} class="d-block w-100" alt="..." />
+                        <div className="carousel-item">
+                            <img src={placeholder3} className="d-block w-100" alt="..." />
                         </div>
                     </div>
                 </div>
@@ -100,4 +99,4 @@ function Home() {
         </div>
     );
 }
-export default withRouter(Home)
+export default Home

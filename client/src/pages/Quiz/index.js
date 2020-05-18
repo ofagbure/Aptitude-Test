@@ -7,7 +7,6 @@ import Complete from '../../components/AfterPage'
 import jobData from '../../components/Job'
 import jobsData from '../../components/Job';
 import { Route } from "react-router-dom"
-import {withRouter} from 'react-router';
 
 function Quiz() {
 
@@ -232,5 +231,5 @@ function Quiz() {
     }
 }
 
-export default withRouter(Quiz)
+export default Quiz
 

@@ -1,26 +1,41 @@
 import React from 'react'
+import { useHistory } from "react-router-dom";
 
 function Navbar(props) {
-    let home = "nav-item ", cand = "nav-item ", role = "nav-item ";
+    const history = useHistory();
+
+    function handleHomeClick() {
+        history.push('/home')
+    }
+    function handleCandidateClick() {
+        var link;
+        if(props.setLink) {
+            link = props.link;
+        } else {
+            link = "./candidateportal";
+        }
+        history.push(`${link}`)
+    }
+    function handleRoleClick() {
+        history.push('/roles')
+    }
+
+    let home = "grey", cand = "grey", role = "grey";
+    console.log(home,cand,role);
     switch(props.active) {
         case "Home":
-            home += "active";
+            home = "white";
             break;
         case "Candidate Portal":
-            cand += "active";
+            cand = "white";
             break;
         case "Role Descriptions":
-            role += "active";
+            role = "white";
             break;
     default:
-        home += "active";
+        home = "white";
     }
-    var link;
-    if(props.setLink) {
-        link = props.link;
-    } else {
-        link = "./candidateportal";
-    }
+    
 
     return(
         
@@ -33,14 +48,14 @@ function Navbar(props) {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ml-auto">
-                        <li className={home}>
-                            <a className="nav-link" href="./home">Home<span className="sr-only">(current)</span></a>
+                        <li>
+                            <button style={{color: `${home}`}} className='navSty' type='button' onClick={handleHomeClick}>Home</button>
                         </li>
-                        <li className={cand}>
-                            <a className="nav-link" href={link}>Candidate Portal</a>
+                        <li>
+                            <button style={{color: `${cand}`}} className='navSty' type='button' onClick={handleCandidateClick}>Candidate Portal</button>
                         </li>
-                        <li className={role}>
-                            <a className="nav-link" href="./roles">Role Descriptions</a>
+                        <li>
+                        <button style={{color: `${role}`}} className='navSty' type='button' onClick={handleRoleClick}>Role Descriptions</button>
                         </li>
                     </ul>
                 </div>

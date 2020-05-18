@@ -77,7 +77,7 @@ body {
       top: 52%;
   }
   
-  button {
+  .quizButton {
       background-color: #F6BF42;
       position: relative;
       margin: 0;
@@ -271,4 +271,11 @@ body {
   100% {
     opacity: 1;
   }
+}
+
+.navSty {
+    background: none!important;
+    border: none;
+    color: grey;
+    cursor: pointer;
 }

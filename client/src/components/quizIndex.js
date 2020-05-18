@@ -6,7 +6,7 @@ export default function QuizIndex() {
   const Button = () => (
     <Route render={({ history}) => (
       <button
-        type='button'
+        type='button' className='quizButton'
         onClick={() => { history.push('/quizStart') }}
       >
         Click Me!
