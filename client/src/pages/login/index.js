@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import LoggedOut from "./LoggedOut";
 import Navbar from "../../components/Navbar";
+import {withRouter} from 'react-router';
 
 function Login() {
 
@@ -31,4 +32,4 @@ function Login() {
     
 }
 
-export default Login;
+export default withRouter(Login);

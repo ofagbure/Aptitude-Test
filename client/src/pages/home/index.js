@@ -6,6 +6,7 @@ import placeholder3 from "../../images/placeholder 3.jpg"
 import jobDescrip from "../../images/job descriptions.jpg"
 import testPic from "../../images/test.jpeg"
 import newProfPic from "../../images/createprofile.jpg"
+import {withRouter} from 'react-router';
 
 function Home() {
     const [windowHeight, setWindowHeight] = useState(`${window.innerHeight + window.pageYOffset - 44 + "px"}`);
@@ -99,4 +100,4 @@ function Home() {
         </div>
     );
 }
-export default Home
+export default withRouter(Home)

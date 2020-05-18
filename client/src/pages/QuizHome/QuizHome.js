@@ -1,5 +1,7 @@
 import React from "react";
 import QuizIndex from "../../components/quizIndex";
-export default function QuizHome() {
+import {withRouter} from 'react-router';
+
+export default withRouter(function QuizHome() {
   return <QuizIndex />;
-}
+})

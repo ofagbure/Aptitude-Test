@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ApplicantHome from "./ApplicantHome";
 import Navbar from "../../components/Navbar";
+import {withRouter} from 'react-router';
 
 const axios = require('axios');
 
@@ -44,4 +45,4 @@ function CandidatePortal() {
     
 }
 
-export default CandidatePortal;
+export default withRouter(CandidatePortal);

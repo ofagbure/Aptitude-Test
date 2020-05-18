@@ -10,6 +10,7 @@ import marketing from "../../images/marketing.jpg";
 import sales from "../../images/sales.jpg";
 import software from "../../images/software.jpg";
 import technology from "../../images/tech support.jpg";
+import {withRouter} from 'react-router';
 
 
 function Roles() {
@@ -191,4 +192,4 @@ function Roles() {
 
     );
 }
-export default Roles
+export default withRouter(Roles)

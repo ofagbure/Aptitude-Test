@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from "../../components/Navbar";
 import Button from "../../components/Button";
 import images from '../../images';
+import {withRouter} from 'react-router';
 
 const axios = require('axios');
 const usrEmail = window.atob(localStorage.getItem("email"));
@@ -399,4 +400,4 @@ function viewProfile(email) {
 
 
 
-export default RecruiterPortal;
+export default withRouter(RecruiterPortal);
