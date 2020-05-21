@@ -1,0 +1,290 @@
+.App {
+  text-align: center;
+}
+
+.quizBack {
+  
+  background: linear-gradient(270deg, #e13254, #842176, #321293);
+  background-size: 600% 600%;
+
+  width: 100%;
+  height: 100%;
+
+  -webkit-animation: AnimationName 15s ease infinite;
+  -moz-animation: AnimationName 15s ease infinite;
+  animation: AnimationName 15s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-moz-keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.header-large {
+  width: 100%;
+  font-size: 5em;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-family:courier,arial,helvetica;
+  font-weight: 500;
+  font-style: normal;
+  text-transform: uppercase;
+  color: #ffffff;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 30px;
+}
+
+.qHeader1 {
+  text-align: center;
+  font-family: cursive;
+  color: white;
+	font-size: 40px;
+	text-shadow: -1px 1px 0 #000,
+				  1px 1px 0 #000,
+				 1px -1px 0 #000,
+				-1px -1px 0 #000;
+}
+.qHeader2 {
+  text-align: center;
+  font-family: cursive;
+  color: white;
+	font-size: 40px;
+	text-shadow: -1px 1px 0 #000,
+				  1px 1px 0 #000,
+				 1px -1px 0 #000,
+				-1px -1px 0 #000;
+}
+
+.quizButton {
+    background-color: #F6BF42;
+    margin: 0;
+    padding: 15px 32px;
+    font-size: 30px;
+    border-radius: 25px;
+    color: #ffffff;
+    font-family: cursive;
+}
+#logo{ transition: all 200ms;}
+#logo:hover {
+  text-shadow: 
+    0.2em 0.2em 0.5em white,
+    -0.2em 0.2em 0.5em white,
+    0.2em -0.2em 0.5em white,
+    -0.2em -0.2em 0.5em white;
+  transform: scale(1.03);
+}
+
+/* width */
+::-webkit-scrollbar {
+width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+background: #f1f1f1; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+background: #555; 
+}
+
+.cantTouchThis, .clickableCard {
+-webkit-user-select: none; /* Safari */        
+-moz-user-select: none; /* Firefox */
+-ms-user-select: none; /* IE10+/Edge */
+user-select: none; /* Standard */
+}
+
+#recruiterProfile {
+margin-bottom: 45px;
+background-color: #343a40;
+padding: 10px;
+border-radius: 25px;
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+transition: all 200ms;
+}
+
+#recruiterProfile:hover{
+border: 5px solid #842176;
+}
+
+#interviewTable {
+border-radius: 25px 25px 0px 0px ;
+outline: none;
+overflow: hidden;
+/* white-space: pre-wrap; */
+word-break: break-word;
+text-overflow: ellipsis;
+}
+
+#allUsersTable {
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+#portfolioBackground {
+padding: 25px;
+  border-radius: 100px 15px 15px 15px ;
+  text-shadow: 
+      0.2em 0.2em 0.2em white,
+      0.1em 0.1em 0.2em white,
+      -0.2em 0.2em 0.2em white,
+      -0.1em 0.1em 0.2em white,
+      0.2em -0.2em 0.2em white,
+      0.1em -0.1em 0.2em white,
+      -0.2em -0.2em 0.2em white,
+      -0.1em -0.1em 0.2em white;
+}
+
+#applicantInterview {
+background-image: url('./images/trees.png');
+text-align: center;
+padding: 25px;
+margin-top: 25px;
+border-radius: 15px;
+text-shadow: 
+  0.2em 0.2em 0.1em white,
+  -0.2em 0.2em 0.1em white,
+  0.2em -0.2em 0.1em white,
+  -0.2em -0.2em 0.1em white;
+}
+
+#appIntrvw {
+border-radius: 50px; 
+border: solid 5px white;
+}
+
+#interviewOut {
+background-color: white;
+padding: 10px;
+border-radius: 10px;
+text-shadow: none;
+}
+
+#chooberHome{
+position: relative;
+top: -85px;
+box-shadow: 0px -20px 15px white;
+}
+
+#carousel {
+border-radius: 25px;
+overflow: hidden;
+}
+
+#linkCards {
+position: relative;
+top: -110px;
+}
+
+#whyWait {
+cursor: pointer;
+transition: all 200ms;
+padding: 0;
+}
+
+#whyWait:hover {
+transform: scale(1.05);
+box-shadow: 5px 10px 10px gray;
+}
+
+.clickableCard {
+transition: all 200ms;
+padding: 0;
+}
+.clickableCard:hover {
+transform: scale(1.05);
+box-shadow: 5px 10px 10px gray;
+}
+
+.questionHeader{
+margin-top: 50px;
+padding: 16px 32px;
+background-color: honeydew;
+border-radius: 25px;
+position: relative;
+animation: fadeDown 1000ms;
+}
+
+.quizQuestion {
+display: block;
+background-color: honeydew;
+margin:20px;
+font-size: calc(1em + 1vw);
+border-radius: 20px;
+text-decoration: none;
+animation: fadeIn 1000ms;
+}
+
+@keyframes fadeDown {
+0% {
+  opacity: 0;
+  top: -200px;
+}
+100% {
+  opacity: 1;
+  top: 0px;
+}
+}
+@keyframes fadeIn {
+0% {
+  opacity: 0;
+}
+100% {
+  opacity: 1;
+}
+}
+
+.navbarLinkOp {
+  background-color: white;
+  border: none;
+  font-size: larger;
+  padding: 5px;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.navbarLinkOp:hover {
+  background-color: rgb(227, 227, 255);
+}
