@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import ApplicantHome from "./ApplicantHome";
 import Navbar from "../../components/Navbar";
+import { useHistory } from "react-router-dom";
 
 const axios = require('axios');
 
 function CandidatePortal() {
+    const history = useHistory();
 
     const [windowHeight, setWindowHeight] = useState(`${window.innerHeight + window.pageYOffset - 44 + "px"}`);
     const [loggedIn, setloggedIn] = useState(false);
@@ -14,7 +16,7 @@ function CandidatePortal() {
             if(res.data === true) {
                 setloggedIn(true);
             } else {
-                window.location.replace('./login');
+                history.push('/login');
         }
     });
 

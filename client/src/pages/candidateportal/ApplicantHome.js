@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import Button from "../../components/Button";
 import Loading from '../../components/Loading';
 import Portfolio from "./Portfolio";
+import { useHistory } from "react-router-dom";
+import { withRouter } from "react-router";
 
 const axios = require('axios');
 
 function ApplicantHome (props) {
+    const history = useHistory();
 
     const [HasPortfolio, setHasPortfolio] = useState(false);
 
@@ -15,7 +18,7 @@ function ApplicantHome (props) {
         axios.get(`/api/one/user/email/${usrEmail}`)
         .then(function (result) {
             if(result.data.recruiter) {
-                window.location.replace('./recruiterportal');
+                history.push('/recruiterportal')
             }
         })
         axios.get(`/api/one/profile/email/${window.atob(localStorage.getItem("email"))}`)
@@ -28,7 +31,7 @@ function ApplicantHome (props) {
     });
 
     if(localStorage.getItem("email") === null) { 
-        window.location.replace('./login');
+        history.push('/login');
     }
 
     if(props.data && localStorage.getItem("email") !== null) {
@@ -40,7 +43,7 @@ function ApplicantHome (props) {
             })
             .then(function () {
                 localStorage.removeItem("email");
-                window.location.replace('./home');
+                history.push('/home');
             })
         }
         
@@ -65,4 +68,4 @@ function ApplicantHome (props) {
     }
 }
 
-export default ApplicantHome;
+export default withRouter(ApplicantHome);

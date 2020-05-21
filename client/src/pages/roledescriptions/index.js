@@ -10,10 +10,11 @@ import marketing from "../../images/marketing.jpg";
 import sales from "../../images/sales.jpg";
 import software from "../../images/software.jpg";
 import technology from "../../images/tech support.jpg";
-import {withRouter} from 'react-router';
+import { useHistory } from "react-router-dom";
 
 
 function Roles() {
+    const history = useHistory();
     const [windowHeight, setWindowHeight] = useState(`${window.innerHeight + window.pageYOffset - 44 + "px"}`);
 
     React.useEffect(() => {
@@ -22,7 +23,7 @@ function Roles() {
         }
         window.addEventListener('resize', resize);
         document.getElementById('whyWait').addEventListener("click", function() {
-            window.location.replace("./candidateportal")
+            history.push("/candidateportal")
         });
     });
 
@@ -192,4 +193,4 @@ function Roles() {
 
     );
 }
-export default withRouter(Roles)
+export default Roles

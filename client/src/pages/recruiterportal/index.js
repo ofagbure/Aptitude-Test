@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import Navbar from "../../components/Navbar";
 import Button from "../../components/Button";
 import images from '../../images';
-import {withRouter} from 'react-router';
+import { useHistory } from "react-router-dom";
 
 const axios = require('axios');
 const usrEmail = window.atob(localStorage.getItem("email"));
 var once = true;
 
+
+
 function RecruiterPortal() {
-    
+    const history = useHistory();
     const [windowHeight, setWindowHeight] = useState(`${window.innerHeight + window.pageYOffset - 44 + "px"}`);
 
     React.useEffect(() => {
@@ -20,25 +22,54 @@ function RecruiterPortal() {
     });
 
     React.useEffect(() => {
-        scheduledInterviews();
         allApplicants();
         populateRecruiters();
-    }, []);
 
+    }, []);
+        function scheduleInterview () {
+            if(once) {
+                return;
+            }
+        var intModName = document.getElementById('intModName');
+        var selectSchedInter = document.getElementById('selectSchedInter');
+        var intrvwLocation = document.getElementById('intrvwLocation');
+        var interviewTime = document.getElementById('interviewTime');
+        selectSchedInter.style.border = "1px solid #ced4da";
+        intrvwLocation.style.border = "1px solid #ced4da";
+        interviewTime.style.border = "1px solid #ced4da";
+    
+        if(isEmpty(selectSchedInter)){ return; }
+        if(isEmpty(intrvwLocation)){ return; }
+        if(isEmpty(interviewTime)){ return; }
+        
+        let newInterview = {
+            recruiterEmail: selectSchedInter.value,
+            applicantEmail: intModName.innerHTML,
+            interviewTime: interviewTime.value,
+            interviewLocation: intrvwLocation.value
+        }
+        console.log(newInterview);
+        axios.post(`/addInterview`, newInterview)
+        .then(function (result) {
+            setTimeout(function() {
+                history.push('/recruiterportal')
+            },1000)
+        });
+    }
     const logout = () => {
         axios.post('/logout', {
             email: usrEmail,
         })
             .then(function (response) {
                 localStorage.removeItem("email");
-                window.location.replace('./home');
+                history.push('/home');
             })
     }
 
     axios.get('/isLoggedIn')
         .then(function (res) {
             if (res.data !== true) {
-                window.location.replace('./login');
+                history.push('/login');
             }
         });
 
@@ -47,7 +78,7 @@ function RecruiterPortal() {
     axios.get(`/api/one/user/email/${usrEmail}`)
         .then(function (result) {
             if (!result.data.recruiter) {
-                window.location.replace('./candidateportal');
+                history.push('/candidateportal');
             }
         })
     return (
@@ -95,7 +126,7 @@ function RecruiterPortal() {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="userProfTitle">Portfolio</h5>
-                            <a href="javascript:void(0)" type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <a type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </a>
                         </div>
@@ -107,7 +138,7 @@ function RecruiterPortal() {
                                     </div>
                                     <div className="col-md-6">
                                         <h1 id='modalName'>-</h1>
-                                        <a id='modalPortfolio' href="javascript:void(0)" target="_blank" rel="noopener noreferrer">Portfolio</a>
+                                        <a id='modalPortfolio' href="" target="_blank" rel="noopener noreferrer">Portfolio</a>
                                         <p id='modalLocation'>city ••• willMove?</p>
                                         <h5>Test Result:</h5>
                                         <p id='modalTestResults'>Test Result</p>
@@ -131,7 +162,7 @@ function RecruiterPortal() {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="intModName">-</h5>
-                            <a href="javascript:void(0)" type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <a type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </a>
                         </div>
@@ -165,7 +196,7 @@ function RecruiterPortal() {
                             <div className="row">
                                 <div className="col-md-12">
                                     <input type="datetime-local" id="interviewTime" name="interviewTime" />
-                                    <a href="javascript:void(0)"  id="scheduleBtn" style={{ margin: "5px" }}>Schedule!</a>
+                                    <button onClick={scheduleInterview()} id="scheduleBtn" style={{ margin: "5px" }}>Schedule!</button>
                                 </div>
                             </div>
                         </div>
@@ -188,6 +219,9 @@ function isEmpty(obj, red = true) {
 }
 
 function populateRecruiters() {
+    if(once) {
+        return;
+    }
     axios.get(`/api/all/recruiters`)
         .then(function (results) {
         
@@ -250,6 +284,9 @@ function scheduledInterviews() {
 }
 
 function allApplicants() {
+    if(once) {
+        return;
+    }
     axios.get(`/api/all/applicants`)
         .then(function (results) {
             const middle = document.getElementById('middle');
@@ -303,9 +340,6 @@ function addListeners() {
             })
         }
     if(once){
-        document.getElementById('scheduleBtn').addEventListener("click", function () {
-            scheduleInterview();
-        });
         document.getElementById('filterSearch').addEventListener("keyup", function() {
             tableFilter();
         });
@@ -335,35 +369,6 @@ function tableFilter() {
             }
         }
     }
-}
-
-function scheduleInterview() {
-    var intModName = document.getElementById('intModName');
-    var selectSchedInter = document.getElementById('selectSchedInter');
-    var intrvwLocation = document.getElementById('intrvwLocation');
-    var interviewTime = document.getElementById('interviewTime');
-
-    selectSchedInter.style.border = "1px solid #ced4da";
-    intrvwLocation.style.border = "1px solid #ced4da";
-    interviewTime.style.border = "1px solid #ced4da";
-
-    if(isEmpty(selectSchedInter)){ return; }
-    if(isEmpty(intrvwLocation)){ return; }
-    if(isEmpty(interviewTime)){ return; }
-    
-    let newInterview = {
-        recruiterEmail: selectSchedInter.value,
-        applicantEmail: intModName.innerHTML,
-        interviewTime: interviewTime.value,
-        interviewLocation: intrvwLocation.value
-    }
-    console.log(newInterview);
-    axios.post(`/addInterview`, newInterview)
-    .then(function (result) {
-        setTimeout(function() {
-            window.location.replace('./recruiterportal')
-        },1000)
-    });
 }
 
 function viewProfile(email) {
@@ -400,4 +405,4 @@ function viewProfile(email) {
 
 
 
-export default withRouter(RecruiterPortal);
+export default RecruiterPortal;

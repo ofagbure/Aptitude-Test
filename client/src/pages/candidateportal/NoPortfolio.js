@@ -2,10 +2,12 @@ import React from 'react';
 import Entry from '../../components/Entry';
 import Button from '../../components/Button';
 import images from '../../images';
+import { useHistory } from "react-router-dom";
 
 const axios = require('axios');
 
 function NoPortfolio(props) {
+    const history = useHistory();
     console.log(props);
     React.useEffect(() => {
         if(props.edit) {
@@ -23,7 +25,7 @@ function NoPortfolio(props) {
         const yesCheckbox = document.getElementById('yesCheckbox');
         
         if(firstName === null) {
-            window.location.replace('./candidateportal');
+            history.push('/candidateportal');
         }
         firstName.style.border = "1px solid #ced4da";
         lastName.style.border = "1px solid #ced4da";
@@ -56,7 +58,7 @@ function NoPortfolio(props) {
             .then(function (res) {
                 if(res) {
                     props.setPortfolio(true);
-                    window.location.replace('./candidateportal');
+                    history.push('/candidateportal');
                 } else {
                     alert('error')
                 }
@@ -76,7 +78,7 @@ function NoPortfolio(props) {
                 if(res) {
                     console.log(res);
                     props.setEditPortfolio(false);
-                    window.location.replace('./candidateportal')
+                    history.push('/candidateportal')
                 }
             });
         }

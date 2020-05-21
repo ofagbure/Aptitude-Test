@@ -4,10 +4,12 @@ import Button from '../../components/Button';
 import PortfolioTop from '../../components/PortfolioTop';
 import PortfolioBottom from '../../components/PortfolioBottom';
 import Loading from '../../components/Loading';
+import { useHistory } from "react-router-dom";
 
 const axios = require('axios');
 
 function Portfolio(props) {
+    const history = useHistory();
     const [EditPortfolio, setEditPortfolio] = React.useState(false);
     const [IsLoading, setIsLoading] = React.useState(true);
     const [HasGottenProfile, setHasGottenProfile] = React.useState(false);
@@ -97,7 +99,7 @@ function Portfolio(props) {
                     editBtn={[
                         <div key='btnContainer'>
                         <Button key="editBtn" name="Edit Portfolio" color="1" onclick={edit}/>
-                        <Button key="quizBtn" name="Take Quiz" color="2" onclick={function changeWin() { window.location.replace('./quiz')} }/>
+                        <Button key="quizBtn" name="Take Quiz" color="2" onclick={function changeWin() { history.push('/quiz')} }/>
                         </div>
                     ]}
                     />

@@ -6,9 +6,18 @@ import placeholder3 from "../../images/placeholder 3.jpg"
 import jobDescrip from "../../images/job descriptions.jpg"
 import testPic from "../../images/test.jpeg"
 import newProfPic from "../../images/createprofile.jpg"
+import { useHistory } from "react-router-dom";
 
 function Home() {
+    const history = useHistory();
     const [windowHeight, setWindowHeight] = useState(`${window.innerHeight + window.pageYOffset - 44 + "px"}`);
+
+    function profClickHandler() {
+        history.push('/candidateportal');
+    }
+    function rolesClickHandler() {
+        history.push('/roles');
+    }
 
     React.useEffect(() => {
         function resize() {
@@ -68,7 +77,7 @@ function Home() {
                             <div className="card-body text-center">
                                 <h5 className="card-title">View Our Roles</h5>
                                 <p className="card-text">Want some more information on our roles? View all career options and find out how they come together to form Choober below.</p>
-                                <a href="./roles" className="btn btn-primary" style={{backgroundColor: "#842176"}}>To the roles!</a>
+                                <button onClick={rolesClickHandler} className="btn btn-primary" style={{backgroundColor: "#842176"}}>To the roles!</button>
                             </div>
                         </div>
                     </div>
@@ -78,7 +87,7 @@ function Home() {
                             <div className="card-body text-center">
                                 <h5 className="card-title">Create a Candidate Profile</h5>
                                 <p className="card-text">Create and complete your profile to get an interview with our outstanding recruiters. Only takes minutes!</p>
-                                <a href="./candidateportal" className="btn btn-primary" style={{backgroundColor: "#842176"}}>Go to profile</a>
+                                <button onClick={profClickHandler} className="btn btn-primary" style={{backgroundColor: "#842176"}}>Go to profile</button>
                             </div>
                         </div>
                     </div>
@@ -89,7 +98,7 @@ function Home() {
                                 <h5 className="card-title">Take the Company Test</h5>
                                 <p className="card-text">Not sure what role to apply to? Don't worry! Create an account and take the aptitude test to get
                                 matched to the role that's right for you.</p>
-                                <a href="./candidateportal" className="btn btn-primary" style={{backgroundColor: "#842176"}}>Create Account</a>
+                                <button onClick={profClickHandler} className="btn btn-primary" style={{backgroundColor: "#842176"}}>Create Account</button>
                             </div>
                         </div>
                     </div>
